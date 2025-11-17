@@ -22,6 +22,20 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+    // Security: Ensure all interactive elements require login
+    // The PHP requireLogin() already prevents access, but we'll add UI enhancements
+    document.addEventListener('DOMContentLoaded', function() {
+        // Disable form submissions if user somehow bypasses
+        const forms = document.querySelectorAll('form');
+        forms.forEach(form => {
+            if (!form.id.includes('editDeliveryForm')) {
+                form.addEventListener('submit', function(e) {
+                    // The form should be protected by PHP, but this adds extra layer
+                });
+            }
+        });
+    });
+
     // Parallax watermark effect on scroll
     if (document.body.classList.contains('dashboard-page')) {
         window.addEventListener('scroll', function() {

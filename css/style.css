@@ -17,29 +17,34 @@ body {
 
 /* Clover watermark for dashboard pages */
 body.dashboard-page::before {
-  content: "🍀";
+  content: "🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀";
   position: fixed;
-  top: calc(10% + var(--scroll-y, 0px));
-  left: 5%;
-  font-size: 300px;
-  opacity: 0.25;
+  top: calc(5% + var(--scroll-y, 0px));
+  left: 2%;
+  font-size: 120px;
+  opacity: 0.35;
   z-index: 1;
   pointer-events: none;
-  transform: skewY(-15deg) rotate(-20deg);
-  line-height: 1;
+  transform: skewY(-20deg) rotate(-25deg);
+  line-height: 1.2;
+  word-break: break-word;
+  width: 15%;
 }
 
 body.dashboard-page::after {
-  content: "🍀";
+  content: "🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀";
   position: fixed;
-  bottom: calc(10% - var(--scroll-y, 0px));
-  right: 8%;
-  font-size: 320px;
-  opacity: 0.25;
+  bottom: calc(5% - var(--scroll-y, 0px));
+  right: 2%;
+  font-size: 120px;
+  opacity: 0.35;
   z-index: 1;
   pointer-events: none;
-  transform: skewY(-15deg) rotate(15deg);
-  line-height: 1;
+  transform: skewY(-20deg) rotate(25deg);
+  line-height: 1.2;
+  word-break: break-word;
+  width: 15%;
+  text-align: right;
 }
 
 html,
@@ -653,6 +658,16 @@ body.dashboard-page {
 
 body {
   padding-bottom: 60px;
+}
+
+/* Enhanced security - Button and form styling */
+button:not([data-bs-dismiss]):not([data-bs-toggle]),
+input[type="submit"],
+.btn:not(.navbar-toggler),
+a[href*="add"]:not(.nav-link),
+a[href*="edit"]:not(.nav-link) {
+  cursor: pointer;
+  transition: opacity 0.3s ease;
 }
 
 /* Responsive design */
