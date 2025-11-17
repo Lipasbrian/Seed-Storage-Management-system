@@ -19,8 +19,11 @@ body {
 
 /* Animated clover pattern background for dashboard pages */
 body.dashboard-page {
-  background-image: 
-    radial-gradient(circle, transparent 40%, rgba(255,255,255,0.03) 100%);
+  background-image: radial-gradient(
+    circle,
+    transparent 40%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
   background-size: 80px 80px;
   background-position: calc(var(--scroll-y) * 0.3) 0;
   animation: cloverDrift 20s ease-in-out infinite;
@@ -34,11 +37,10 @@ body.dashboard-page::before {
   width: 100%;
   height: 100%;
   font-size: 60px;
-  opacity: 0.08;
-  z-index: 0;
+  opacity: 0.04;
+  z-index: -1;
   pointer-events: none;
-  background-image: 
-    repeating-linear-gradient(
+  background-image: repeating-linear-gradient(
       0deg,
       transparent,
       transparent 80px,
@@ -70,23 +72,23 @@ body.dashboard-page::after {
   width: 150%;
   height: 150%;
   font-size: 50px;
-  opacity: 0.12;
-  z-index: 0;
+  opacity: 0.04;
+  z-index: -1;
   pointer-events: none;
   transform: translateY(var(--scroll-y, 0px)) skewY(-5deg);
   white-space: pre-wrap;
   word-wrap: break-word;
   line-height: 1.8;
   letter-spacing: 8px;
-  color: rgba(45, 80, 22, 0.4);
-  text-shadow: 
-    2px 2px 4px rgba(45, 80, 22, 0.1),
+  color: rgba(45, 80, 22, 0.5);
+  text-shadow: 2px 2px 4px rgba(45, 80, 22, 0.1),
     -2px -2px 4px rgba(45, 80, 22, 0.05);
   animation: cloverSway 15s ease-in-out infinite;
 }
 
 @keyframes cloverDrift {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.12;
     transform: translateX(0) scale(1);
   }
@@ -97,7 +99,8 @@ body.dashboard-page::after {
 }
 
 @keyframes cloverSway {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(var(--scroll-y, 0px)) skewY(-5deg) rotateZ(0deg);
   }
   25% {
@@ -158,7 +161,8 @@ body.login-page::before {
 }
 
 @keyframes loginCloverFloat {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.06;
     transform: translateY(0) rotateZ(-5deg);
   }
