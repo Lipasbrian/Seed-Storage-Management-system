@@ -32,7 +32,7 @@ $sql = "SELECT d.*, f.farmer_name, sv.variety_name, p.permit_number, b.bin_numbe
 if ($where) {
     $sql .= " WHERE " . implode(' AND ', $where);
 }
-$sql .= " ORDER BY d.delivery_datetime DESC LIMIT 100";
+$sql .= " ORDER BY d.delivery_datetime ASC LIMIT 100";
 $stmt = $db->prepare($sql);
 $stmt->execute($params);
 $deliveries = $stmt->fetchAll();
