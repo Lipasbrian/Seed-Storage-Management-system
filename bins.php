@@ -21,7 +21,7 @@ include 'includes/header.php';
                         <thead>
                             <tr>
                                 <th>Bin Number</th>
-                                <th>Capacity (kg)</th>
+                                <th>Capacity</th>
                                 <th>Current Stock (kg)</th>
                                 <th>Status</th>
                                 <th>Variety</th>
@@ -30,17 +30,40 @@ include 'includes/header.php';
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach($bins as $bin): ?>
+                            <?php
+                                // Bag / capacity constants
+                                $BAG_WEIGHT_KG = 60;
+                                $MAX_BAGS = 300;
+                                $DEFAULT_CAPACITY_KG = $BAG_WEIGHT_KG * $MAX_BAGS; // 18,000 kg
+                                foreach($bins as $bin):
+                                    // Use stored capacity if present, otherwise default to 300 bags (60kg each)
+                                    $capacityKg = (!empty($bin['capacity_kg']) && $bin['capacity_kg'] > 0) ? $bin['capacity_kg'] : $DEFAULT_CAPACITY_KG;
+                                    $capacityBags = round($capacityKg / $BAG_WEIGHT_KG);
+                                    $currentKg = !empty($bin['current_stock_kg']) ? $bin['current_stock_kg'] : 0;
+                                    $fillPercent = ($capacityKg > 0) ? min(100, ($currentKg / $capacityKg) * 100) : 0;
+                                    // Determine status by fill percent
+                                    if($currentKg <= 0) {
+                                        $statusLabel = 'Empty';
+                                        $statusClass = 'bg-success';
+                                    } elseif($fillPercent >= 100) {
+                                        $statusLabel = 'Full';
+                                        $statusClass = 'bg-danger';
+                                    } else {
+                                        $statusLabel = 'Partial';
+                                        $statusClass = 'bg-warning';
+                                    }
+                            ?>
                             <tr>
                                 <td><?php echo $bin['bin_number']; ?></td>
-                                <td><?php echo number_format($bin['capacity_kg']); ?></td>
-                                <td><?php echo number_format($bin['current_stock_kg']); ?></td>
                                 <td>
-                                    <?php
-                                        if($bin['status'] == 'empty') echo '<span class="badge bg-success">Empty</span>';
-                                        elseif($bin['status'] == 'partial') echo '<span class="badge bg-warning">Partial</span>';
-                                        else echo '<span class="badge bg-danger">Full</span>';
-                                    ?>
+                                    <?php echo number_format($capacityBags); ?> bags (<?php echo number_format($capacityKg); ?> kg)
+                                </td>
+                                <td><?php echo number_format($currentKg); ?></td>
+                                <td>
+                                    <span class="badge <?php echo $statusClass; ?>"><?php echo $statusLabel; ?></span>
+                                    <div class="progress mt-2" style="height:8px; max-width:140px;">
+                                        <div class="progress-bar" role="progressbar" style="width: <?php echo round($fillPercent); ?>%;" aria-valuenow="<?php echo round($fillPercent); ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
                                 </td>
                                 <td><?php echo htmlspecialchars($bin['variety_name'] ?? ''); ?></td>
                                 <td><?php echo $bin['current_moisture_content']; ?></td>
