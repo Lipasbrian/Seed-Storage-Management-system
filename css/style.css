@@ -186,6 +186,31 @@ body.login-page::after {
   background-color: rgba(255, 255, 255, 0.93);
 }
 
+/* Specific styling to ensure Bin Status card is fully readable above clovers */
+.bin-status-card {
+  background-color: #ffffff !important;
+  position: relative;
+  z-index: 9999 !important;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+}
+
+.bin-status-card .card-body {
+  background-color: #ffffff !important;
+}
+
+/* Ensure each individual bin box sits above the clovers */
+.bin-box {
+  position: relative;
+  z-index: 10000 !important;
+  background-color: #ffffff !important;
+  border: 1px solid rgba(0,0,0,0.06) !important;
+}
+
+.bin-box .card-body {
+  background-color: #ffffff !important;
+  color: #222 !important;
+}
+
 .form-control {
   border: 2px solid #e0e0e0;
   border-radius: 8px;
