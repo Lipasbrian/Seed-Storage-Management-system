@@ -36,11 +36,15 @@
         });
     });
 
-    // Animated clover pattern parallax effect on scroll
+    // Parallax watermark effect on scroll
     if (document.body.classList.contains('dashboard-page')) {
         window.addEventListener('scroll', function() {
             const scrollY = window.scrollY;
-            document.documentElement.style.setProperty('--scroll-y', scrollY + 'px');
+            const beforeElement = document.querySelector('body::before');
+            const afterElement = document.querySelector('body::after');
+            
+            // Apply parallax transform to pseudo-elements via CSS variable
+            document.documentElement.style.setProperty('--scroll-y', scrollY * 0.5 + 'px');
         });
     }
 
