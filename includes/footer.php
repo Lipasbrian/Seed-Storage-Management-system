@@ -89,5 +89,74 @@
         });
     }
 </script>
+
+<!-- Edit Delivery Modal -->
+<div class="modal fade" id="editDeliveryModal" tabindex="-1" data-bs-backdrop="true" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-ks-primary text-white">
+                <h5 class="modal-title">Edit Delivery</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editDeliveryForm" method="POST">
+                    <input type="hidden" id="delivery_id" name="delivery_id">
+                    <div class="mb-3">
+                        <label for="edit_bags" class="form-label">Bags Delivered</label>
+                        <input type="number" class="form-control" id="edit_bags" name="bags_delivered" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_kg" class="form-label">Weight (kg)</label>
+                        <input type="number" class="form-control" id="edit_kg" name="kg_delivered" step="0.01" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_moisture" class="form-label">Moisture (%)</label>
+                        <input type="number" class="form-control" id="edit_moisture" name="moisture_content" step="0.1" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-ks-primary" onclick="submitEditDelivery()">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function editDelivery(delivery) {
+        document.getElementById('delivery_id').value = delivery.id;
+        document.getElementById('edit_bags').value = delivery.bags_delivered;
+        document.getElementById('edit_kg').value = delivery.kg_delivered;
+        document.getElementById('edit_moisture').value = delivery.moisture_content;
+    }
+
+    function submitEditDelivery() {
+        const form = document.getElementById('editDeliveryForm');
+        const formData = new FormData(form);
+
+        fetch('ajax_update_delivery.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Close modal first
+                const modalElement = document.getElementById('editDeliveryModal');
+                const modal = bootstrap.Modal.getInstance(modalElement);
+                modal.hide();
+                
+                alert('Delivery updated successfully!');
+                location.reload();
+            } else {
+                alert('Error: ' + data.message);
+            }
+        })
+        .catch(error => {
+            alert('Error updating delivery: ' + error);
+        });
+    }
+</script>
 </body>
 </html>
