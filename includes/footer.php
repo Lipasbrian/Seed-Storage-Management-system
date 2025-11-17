@@ -22,6 +22,18 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+    // Parallax watermark effect on scroll
+    if (document.body.classList.contains('dashboard-page')) {
+        window.addEventListener('scroll', function() {
+            const scrollY = window.scrollY;
+            const beforeElement = document.querySelector('body::before');
+            const afterElement = document.querySelector('body::after');
+            
+            // Apply parallax transform to pseudo-elements via CSS variable
+            document.documentElement.style.setProperty('--scroll-y', scrollY * 0.5 + 'px');
+        });
+    }
+
     // Sidebar toggle functionality
     const sidebarToggle = document.getElementById('sidebarToggle');
     const sidebar = document.getElementById('sidebar');

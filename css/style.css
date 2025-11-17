@@ -12,6 +12,34 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  position: relative;
+}
+
+/* Clover watermark for dashboard pages */
+body.dashboard-page::before {
+  content: "🍀";
+  position: fixed;
+  top: calc(10% + var(--scroll-y, 0px));
+  left: 5%;
+  font-size: 300px;
+  opacity: 0.04;
+  z-index: 1;
+  pointer-events: none;
+  transform: skewY(-15deg) rotate(-20deg);
+  line-height: 1;
+}
+
+body.dashboard-page::after {
+  content: "🍀";
+  position: fixed;
+  bottom: calc(10% - var(--scroll-y, 0px));
+  right: 8%;
+  font-size: 320px;
+  opacity: 0.04;
+  z-index: 1;
+  pointer-events: none;
+  transform: skewY(-15deg) rotate(15deg);
+  line-height: 1;
 }
 
 html,
