@@ -99,7 +99,17 @@
             s.style.left = left + '%';
             s.style.top = top + '%';
             s.style.fontSize = size + 'px';
-            s.style.opacity = (0.06 + Math.random() * 0.12).toFixed(2);
+            // base opacity
+            let baseOpacity = 0.06 + Math.random() * 0.12;
+            // increase opacity for middle and right side clovers
+            if (left >= 66) {
+                baseOpacity += 0.12; // right side stronger
+            } else if (left >= 33) {
+                baseOpacity += 0.06; // middle zone
+            }
+            // cap opacity to avoid overpowering content
+            baseOpacity = Math.min(baseOpacity, 0.6);
+            s.style.opacity = baseOpacity.toFixed(2);
 
             s.dataset.depth = depth;
             s.dataset.rot = rot;
