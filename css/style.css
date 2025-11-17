@@ -353,6 +353,115 @@ body.dashboard-page {
   border-left-color: var(--kenya-seed-yellow);
 }
 
+/* New Sidebar Implementation */
+.sidebar {
+  position: fixed;
+  top: 56px;
+  left: 0;
+  width: 250px;
+  height: calc(100vh - 56px);
+  background-color: var(--kenya-seed-light-green);
+  z-index: 99;
+  overflow-y: auto;
+  transition: all 0.3s ease;
+  padding-top: 0;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar .nav-link {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border-left: 4px solid transparent;
+  margin-bottom: 5px;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-left-color: var(--kenya-seed-yellow);
+}
+
+.sidebar .nav-link i {
+  font-size: 18px;
+}
+
+/* Main content adjustments */
+.dashboard-container {
+  margin-left: 250px;
+  transition: all 0.3s ease;
+}
+
+/* Navbar adjustments */
+.navbar-branded {
+  background: linear-gradient(
+    135deg,
+    var(--kenya-seed-green) 0%,
+    var(--kenya-seed-light-green) 100%
+  ) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  height: 56px;
+  padding: 0 1rem;
+}
+
+.navbar-branded .navbar-brand {
+  font-size: 20px;
+  font-weight: 700;
+  color: white !important;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar-toggler {
+  border: none;
+  padding: 0.25rem 0.75rem;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+  outline: 2px solid var(--kenya-seed-yellow);
+  border-radius: 4px;
+}
+
+/* Responsive sidebar */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    width: 100%;
+    height: auto;
+    min-height: calc(100vh - 56px);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .sidebar.show {
+    transform: translateX(0);
+  }
+
+  .dashboard-container {
+    margin-left: 0;
+  }
+
+  .navbar-toggler {
+    border: none;
+  }
+
+  .navbar-toggler:focus {
+    box-shadow: none;
+    outline: 2px solid var(--kenya-seed-yellow);
+  }
+
+  .sidebar .nav-link {
+    padding: 15px 20px;
+    font-size: 16px;
+  }
+}
+
 /* Utility classes */
 .text-ks-green {
   color: var(--kenya-seed-green) !important;
