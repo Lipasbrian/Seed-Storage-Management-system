@@ -14,7 +14,8 @@ body {
   min-height: 100vh;
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -518,10 +519,21 @@ body.dashboard-page {
   right: 0;
   z-index: 1000;
   margin-top: 0;
+  padding: 8px 20px !important;
+  font-size: 12px;
+}
+
+.footer p {
+  margin: 0 !important;
+  line-height: 1.2;
+}
+
+.footer small {
+  font-size: 11px;
 }
 
 body {
-  padding-bottom: 140px;
+  padding-bottom: 60px;
 }
 
 /* Responsive design */
