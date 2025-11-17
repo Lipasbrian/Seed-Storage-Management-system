@@ -167,9 +167,9 @@ include 'includes/header.php';
                                 <td><?php echo $delivery['moisture_content']; ?>%</td>
                                 <td><span class="badge bg-primary">Bin <?php echo $delivery['bin_number']; ?></span></td>
                                 <td>
-                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editDeliveryModal" 
+                                    <button class="btn btn-sm btn-link p-0" title="Edit" data-bs-toggle="modal" data-bs-target="#editDeliveryModal" 
                                         onclick="editDelivery(<?php echo htmlspecialchars(json_encode($delivery)); ?>)">
-                                        <i class="bi bi-pencil"></i> Edit
+                                        <i class="bi bi-pencil"></i>
                                     </button>
                                 </td>
                             </tr>
@@ -181,15 +181,15 @@ include 'includes/header.php';
         </div>
 
         <!-- Edit Delivery Modal -->
-        <div class="modal fade" id="editDeliveryModal" tabindex="-1">
-            <div class="modal-dialog">
+        <div class="modal fade" id="editDeliveryModal" tabindex="-1" data-bs-backdrop="static">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header bg-ks-primary text-white">
                         <h5 class="modal-title">Edit Delivery</h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
-                        <form id="editDeliveryForm" method="POST" action="ajax_update_delivery.php">
+                        <form id="editDeliveryForm" method="POST">
                             <input type="hidden" id="delivery_id" name="delivery_id">
                             <div class="mb-3">
                                 <label for="edit_bags" class="form-label">Bags Delivered</label>
@@ -232,6 +232,11 @@ include 'includes/header.php';
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
+                        // Close modal first
+                        const modalElement = document.getElementById('editDeliveryModal');
+                        const modal = bootstrap.Modal.getInstance(modalElement);
+                        modal.hide();
+                        
                         alert('Delivery updated successfully!');
                         location.reload();
                     } else {
@@ -241,10 +246,6 @@ include 'includes/header.php';
                 .catch(error => {
                     alert('Error updating delivery: ' + error);
                 });
-
-                // Close modal
-                const modal = bootstrap.Modal.getInstance(document.getElementById('editDeliveryModal'));
-                modal.hide();
             }
         </script>
 
