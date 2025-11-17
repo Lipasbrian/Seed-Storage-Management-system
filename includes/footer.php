@@ -87,8 +87,8 @@
             const left = Math.random() * 100;
             const top = Math.random() * 100;
 
-            // size a bit larger: 50px - 160px
-            const size = Math.floor(50 + Math.random() * 110);
+            // size increased: 70px - 200px (larger clovers)
+            const size = Math.floor(70 + Math.random() * 130);
 
             // depth affects parallax movement: 0.2 - 1.0
             const depth = (0.2 + Math.random() * 0.8).toFixed(3);
