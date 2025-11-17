@@ -512,9 +512,16 @@ body.dashboard-page {
 
 /* Footer styling */
 .footer {
-  position: relative;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
-  margin-top: auto;
+  margin-top: 0;
+}
+
+body {
+  padding-bottom: 140px;
 }
 
 /* Responsive design */

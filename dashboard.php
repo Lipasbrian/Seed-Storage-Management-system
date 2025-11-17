@@ -28,6 +28,9 @@ $stmt = $db->query("SELECT COUNT(*) as total FROM invoices");
 $total_invoices = $stmt->fetch()['total'] ?? 0;
 $stmt = $db->query("SELECT SUM(amount) as total FROM invoices");
 $total_invoice_amount = $stmt->fetch()['total'] ?? 0;
+// Partial bins actual capacity
+$stmt = $db->query("SELECT COALESCE(AVG((current_stock_kg::float / capacity_kg::float) * 100), 0) as avg_fill FROM bins WHERE status = 'partial'");
+$partial_fill_percent = $stmt->fetch()['avg_fill'] ?? 0;
 include 'includes/header.php';
 ?>
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
@@ -64,7 +67,7 @@ include 'includes/header.php';
                     </div>
                     <div class="card-body text-center">
                         <div class="stat-value" style="color: var(--kenya-seed-yellow);"><?php echo $partial_bins; ?></div>
-                        <div class="stat-label">out of 48 bins</div>
+                        <div class="stat-label">avg <?php echo number_format($partial_fill_percent, 1); ?>% full</div>
                     </div>
                 </div>
             </div>

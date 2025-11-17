@@ -55,6 +55,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link text-white" href="invoices.php">
+                        <i class="bi bi-receipt"></i> Invoices
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link text-white" href="deliveries.php">
                         <i class="bi bi-truck"></i> Deliveries
                     </a>
