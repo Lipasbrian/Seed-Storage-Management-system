@@ -25,12 +25,14 @@
     // Sidebar toggle functionality
     const sidebarToggle = document.getElementById('sidebarToggle');
     const sidebar = document.getElementById('sidebar');
+    const dashboardContainer = document.querySelector('.dashboard-container');
 
-    if (sidebarToggle && sidebar) {
+    if (sidebarToggle && sidebar && dashboardContainer) {
         sidebarToggle.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             sidebar.classList.toggle('hide');
+            dashboardContainer.classList.toggle('expanded');
         });
 
         // Close sidebar when a link is clicked on mobile
@@ -38,6 +40,7 @@
             link.addEventListener('click', function() {
                 if (window.innerWidth < 768) {
                     sidebar.classList.add('hide');
+                    dashboardContainer.classList.add('expanded');
                 }
             });
         });
@@ -46,6 +49,7 @@
         document.addEventListener('click', function(e) {
             if (window.innerWidth < 768 && !sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
                 sidebar.classList.add('hide');
+                dashboardContainer.classList.add('expanded');
             }
         });
     }

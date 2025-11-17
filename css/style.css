@@ -358,7 +358,7 @@ body.dashboard-page {
   position: fixed;
   top: 56px;
   left: 0;
-  width: 250px;
+  width: 200px;
   height: calc(100vh - 56px);
   background-color: var(--kenya-seed-light-green);
   z-index: 999;
@@ -378,11 +378,12 @@ body.dashboard-page {
   font-weight: 500;
   transition: all 0.3s ease;
   border-left: 4px solid transparent;
-  margin-bottom: 5px;
-  padding: 12px 20px;
+  margin-bottom: 3px;
+  padding: 10px 15px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  font-size: 14px;
 }
 
 .sidebar .nav-link:hover,
@@ -393,13 +394,18 @@ body.dashboard-page {
 }
 
 .sidebar .nav-link i {
-  font-size: 18px;
+  font-size: 16px;
+  min-width: 20px;
 }
 
 /* Main content adjustments */
 .dashboard-container {
-  margin-left: 250px;
+  margin-left: 200px;
   transition: margin-left 0.3s ease;
+}
+
+.dashboard-container.expanded {
+  margin-left: 0;
 }
 
 /* Navbar adjustments */
