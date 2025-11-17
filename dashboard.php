@@ -181,16 +181,22 @@ include 'includes/header.php';
                 <div class="row g-2">
                     <?php foreach($bins as $bin): ?>
                     <div class="col-md-1 col-sm-2 col-3">
-                        <div class="card text-center 
+                        <div class="card text-center bin-box
                             <?php 
                                 if($bin['status'] == 'empty') echo 'bg-success text-white';
                                 elseif($bin['status'] == 'partial') echo 'bg-warning';
                                 else echo 'bg-danger text-white';
-                            ?>">
+                            ?>" style="position: relative;">
                             <div class="card-body p-2">
                                 <strong><?php echo $bin['bin_number']; ?></strong>
                                 <br>
                                 <small><?php echo round($bin['utilization_percent']); ?>%</small>
+                            </div>
+                            <div class="bin-tooltip">
+                                <strong>Bin <?php echo $bin['bin_number']; ?></strong><br>
+                                Stock: <?php echo number_format($bin['current_stock_kg'], 1); ?> kg<br>
+                                Capacity: <?php echo number_format($bin['capacity_kg'], 1); ?> kg<br>
+                                Status: <?php echo ucfirst($bin['status']); ?>
                             </div>
                         </div>
                     </div>

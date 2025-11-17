@@ -53,6 +53,41 @@
             }
         });
     }
+
+    // Footer collapse on scroll with inactivity timeout
+    const footer = document.querySelector('.footer');
+    let lastScrollTime = Date.now();
+    let scrollTimeout;
+    let inactivityTimeout;
+
+    if (footer) {
+        window.addEventListener('scroll', function() {
+            const currentTime = Date.now();
+            const scrollDelta = currentTime - lastScrollTime;
+            
+            // Show footer on scroll
+            footer.classList.remove('collapsed');
+            clearTimeout(inactivityTimeout);
+
+            // If scrolling up (body scrollTop decreasing), keep footer visible
+            // If scrolling down, hide footer after 2s inactivity
+            lastScrollTime = currentTime;
+
+            // Hide footer after 2 seconds of no scrolling
+            inactivityTimeout = setTimeout(function() {
+                footer.classList.add('collapsed');
+            }, 2000);
+        });
+
+        // Show footer on mouse move
+        document.addEventListener('mousemove', function() {
+            footer.classList.remove('collapsed');
+            clearTimeout(inactivityTimeout);
+            inactivityTimeout = setTimeout(function() {
+                footer.classList.add('collapsed');
+            }, 2000);
+        });
+    }
 </script>
 </body>
 </html>

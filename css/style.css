@@ -521,6 +521,15 @@ body.dashboard-page {
   margin-top: 0;
   padding: 8px 20px !important;
   font-size: 12px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.footer.collapsed {
+  transform: translateY(100%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .footer p {
@@ -530,6 +539,48 @@ body.dashboard-page {
 
 .footer small {
   font-size: 11px;
+}
+
+/* Bin hover tooltip */
+.bin-box {
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.bin-box:hover {
+  transform: scale(1.05);
+}
+
+.bin-tooltip {
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  white-space: nowrap;
+  z-index: 1001;
+  pointer-events: none;
+  display: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.bin-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: rgba(0, 0, 0, 0.9);
+}
+
+.bin-box:hover .bin-tooltip {
+  display: block;
 }
 
 body {
