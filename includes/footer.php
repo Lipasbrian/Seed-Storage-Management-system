@@ -36,8 +36,13 @@
         });
     });
 
-    // Dotted pattern background is now fixed and doesn't require scroll handling
-    // No parallax needed as dots are attached to viewport via background-attachment: fixed
+    // Animated clover pattern parallax effect on scroll
+    if (document.body.classList.contains('dashboard-page')) {
+        window.addEventListener('scroll', function() {
+            const scrollY = window.scrollY;
+            document.documentElement.style.setProperty('--scroll-y', scrollY + 'px');
+        });
+    }
 
     // Sidebar toggle functionality
     const sidebarToggle = document.getElementById('sidebarToggle');
