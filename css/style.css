@@ -15,36 +15,17 @@ body {
   position: relative;
 }
 
-/* Clover watermark for dashboard pages */
-body.dashboard-page::before {
-  content: "🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀";
-  position: fixed;
-  top: calc(5% + var(--scroll-y, 0px));
-  left: 2%;
-  font-size: 120px;
-  opacity: 0.35;
-  z-index: 1;
-  pointer-events: none;
-  transform: skewY(-20deg) rotate(-25deg);
-  line-height: 1.2;
-  word-break: break-word;
-  width: 15%;
-}
-
-body.dashboard-page::after {
-  content: "🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀";
-  position: fixed;
-  bottom: calc(5% - var(--scroll-y, 0px));
-  right: 2%;
-  font-size: 120px;
-  opacity: 0.35;
-  z-index: 1;
-  pointer-events: none;
-  transform: skewY(-20deg) rotate(25deg);
-  line-height: 1.2;
-  word-break: break-word;
-  width: 15%;
-  text-align: right;
+/* Dotted pattern background for dashboard pages */
+body.dashboard-page {
+  background-image: radial-gradient(
+    circle,
+    rgba(45, 80, 22, 0.15) 2px,
+    transparent 2px
+  );
+  background-size: 30px 30px;
+  background-attachment: fixed;
+  background-position: 0 0;
+  z-index: 0;
 }
 
 html,
@@ -71,27 +52,22 @@ body.login-page {
   overflow: hidden;
 }
 
-/* Clover watermark background */
+/* Dotted pattern background for login page */
 body.login-page::before {
-  content: "🍀";
+  content: "";
   position: fixed;
-  top: 10%;
-  left: 5%;
-  font-size: 200px;
-  opacity: 0.05;
-  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 2px,
+    transparent 2px
+  );
+  background-size: 30px 30px;
   pointer-events: none;
-}
-
-body.login-page::after {
-  content: "🍀";
-  position: fixed;
-  bottom: 5%;
-  right: 8%;
-  font-size: 220px;
-  opacity: 0.05;
   z-index: 0;
-  pointer-events: none;
 }
 
 .login-container {

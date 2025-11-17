@@ -36,17 +36,8 @@
         });
     });
 
-    // Parallax watermark effect on scroll
-    if (document.body.classList.contains('dashboard-page')) {
-        window.addEventListener('scroll', function() {
-            const scrollY = window.scrollY;
-            const beforeElement = document.querySelector('body::before');
-            const afterElement = document.querySelector('body::after');
-            
-            // Apply parallax transform to pseudo-elements via CSS variable
-            document.documentElement.style.setProperty('--scroll-y', scrollY * 0.5 + 'px');
-        });
-    }
+    // Dotted pattern background is now fixed and doesn't require scroll handling
+    // No parallax needed as dots are attached to viewport via background-attachment: fixed
 
     // Sidebar toggle functionality
     const sidebarToggle = document.getElementById('sidebarToggle');
