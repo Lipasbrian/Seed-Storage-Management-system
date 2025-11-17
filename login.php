@@ -20,31 +20,61 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'Invalid username or password.';
     }
 }
-include 'includes/header.php';
 ?>
-<div class="row justify-content-center mt-5">
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-header bg-primary text-white">
-                <h4 class="mb-0">Login</h4>
-            </div>
-            <div class="card-body">
-                <?php if ($error): ?>
-                    <div class="alert alert-danger"> <?php echo $error; ?> </div>
-                <?php endif; ?>
-                <form method="post" autocomplete="off">
-                    <div class="mb-3">
-                        <label for="username" class="form-label">Username</label>
-                        <input type="text" name="username" id="username" class="form-control" required autofocus>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenya Seed - Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <div class="row justify-content-center">
+            <div class="col-md-5 col-lg-4">
+                <div class="card login-card">
+                    <div class="login-card-header">
+                        <h1>🌾 Kenya Seed</h1>
+                        <div class="company-name">Seed Storage Management System</div>
                     </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" name="password" id="password" class="form-control" required>
+                    <div class="login-card-body">
+                        <?php if ($error): ?>
+                            <div class="alert alert-danger">
+                                <i class="bi bi-exclamation-circle"></i> <?php echo $error; ?>
+                            </div>
+                        <?php endif; ?>
+                        <form method="post" autocomplete="off">
+                            <div class="mb-4">
+                                <label for="username" class="form-label">
+                                    <i class="bi bi-person-circle"></i> Username
+                                </label>
+                                <input type="text" name="username" id="username" class="form-control" placeholder="Enter your username" required autofocus>
+                            </div>
+                            <div class="mb-4">
+                                <label for="password" class="form-label">
+                                    <i class="bi bi-lock-fill"></i> Password
+                                </label>
+                                <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password" required>
+                            </div>
+                            <button type="submit" class="btn login-btn w-100">
+                                <i class="bi bi-box-arrow-in-right"></i> Login
+                            </button>
+                        </form>
+                        <hr class="my-4">
+                        <p class="text-center text-muted" style="font-size: 12px;">
+                            Demo Credentials:<br>
+                            <strong>Username:</strong> admin<br>
+                            <strong>Password:</strong> password
+                        </p>
                     </div>
-                    <button type="submit" class="btn btn-primary w-100">Login</button>
-                </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<?php include 'includes/footer.php'; ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

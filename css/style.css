@@ -1,0 +1,355 @@
+/* Kenya Seed Company Branding */
+
+:root {
+    --kenya-seed-green: #2d5016;
+    --kenya-seed-light-green: #4a7c3e;
+    --kenya-seed-yellow: #f4c430;
+    --kenya-seed-gold: #daa520;
+}
+
+/* Login Page Styling */
+body.login-page {
+    background: linear-gradient(135deg, var(--kenya-seed-green) 0%, var(--kenya-seed-light-green) 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Clover watermark background */
+body.login-page::before {
+    content: '🍀';
+    position: fixed;
+    top: 10%;
+    left: 5%;
+    font-size: 200px;
+    opacity: 0.05;
+    z-index: 0;
+    pointer-events: none;
+}
+
+body.login-page::after {
+    content: '🍀';
+    position: fixed;
+    bottom: 5%;
+    right: 8%;
+    font-size: 220px;
+    opacity: 0.05;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.login-container {
+    position: relative;
+    z-index: 1;
+}
+
+.login-card {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.login-card-header {
+    background: linear-gradient(135deg, var(--kenya-seed-green) 0%, var(--kenya-seed-light-green) 100%) !important;
+    border-bottom: 4px solid var(--kenya-seed-yellow);
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.login-card-header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.login-card-header .company-name {
+    font-size: 12px;
+    color: var(--kenya-seed-yellow);
+    margin-top: 5px;
+    font-weight: 600;
+}
+
+.login-card-body {
+    padding: 40px;
+}
+
+.form-label {
+    color: var(--kenya-seed-green);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.form-control {
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 12px 15px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--kenya-seed-green);
+    box-shadow: 0 0 0 0.2rem rgba(45, 80, 22, 0.15);
+    background-color: #f9fff5;
+}
+
+.login-btn {
+    background: linear-gradient(135deg, var(--kenya-seed-green) 0%, var(--kenya-seed-light-green) 100%);
+    border: none;
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.login-btn:hover {
+    background: linear-gradient(135deg, var(--kenya-seed-light-green) 0%, var(--kenya-seed-green) 100%);
+    box-shadow: 0 5px 20px rgba(45, 80, 22, 0.4);
+    transform: translateY(-2px);
+    color: white;
+}
+
+.alert-danger {
+    background-color: #fff3cd;
+    border: 2px solid #ff6b6b;
+    color: #721c24;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+/* Dashboard Styling */
+body.dashboard-page {
+    background-color: #f5f5f5;
+    position: relative;
+}
+
+/* Dashboard background with watermark */
+.dashboard-watermark {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.03;
+    z-index: 0;
+    pointer-events: none;
+    font-size: 400px;
+    user-select: none;
+}
+
+.dashboard-container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Navbar styling */
+.navbar-branded {
+    background: linear-gradient(135deg, var(--kenya-seed-green) 0%, var(--kenya-seed-light-green) 100%) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-branded .navbar-brand {
+    font-size: 22px;
+    font-weight: 700;
+    color: white !important;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar-branded .navbar-brand::before {
+    content: '🌾';
+    font-size: 24px;
+}
+
+.navbar-branded .nav-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+}
+
+.navbar-branded .nav-link:hover {
+    color: var(--kenya-seed-yellow) !important;
+    border-bottom-color: var(--kenya-seed-yellow);
+}
+
+/* Dashboard cards */
+.dashboard-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border-left: 5px solid var(--kenya-seed-green);
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.dashboard-card-header {
+    background: linear-gradient(135deg, var(--kenya-seed-green) 0%, var(--kenya-seed-light-green) 100%);
+    color: white;
+    font-weight: 600;
+    border-radius: 12px 12px 0 0;
+    padding: 20px;
+}
+
+.dashboard-card-title {
+    margin: 0;
+    font-size: 18px;
+}
+
+.stat-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--kenya-seed-green);
+    margin: 15px 0;
+}
+
+.stat-label {
+    color: #666;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Button styling */
+.btn-ks-primary {
+    background: linear-gradient(135deg, var(--kenya-seed-green) 0%, var(--kenya-seed-light-green) 100%);
+    border: none;
+    color: white;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-ks-primary:hover {
+    background: linear-gradient(135deg, var(--kenya-seed-light-green) 0%, var(--kenya-seed-green) 100%);
+    box-shadow: 0 5px 15px rgba(45, 80, 22, 0.3);
+    transform: translateY(-2px);
+    color: white;
+}
+
+.btn-ks-secondary {
+    background-color: var(--kenya-seed-yellow);
+    border: none;
+    color: var(--kenya-seed-green);
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-ks-secondary:hover {
+    background-color: var(--kenya-seed-gold);
+    box-shadow: 0 5px 15px rgba(244, 196, 48, 0.3);
+    transform: translateY(-2px);
+    color: var(--kenya-seed-green);
+}
+
+/* Table styling */
+.table-branded thead {
+    background-color: var(--kenya-seed-green);
+    color: white;
+}
+
+.table-branded tbody tr {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.table-branded tbody tr:hover {
+    background-color: #f9fff5;
+}
+
+/* Badge styling */
+.badge-status {
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.badge-status.active {
+    background-color: #d4edda;
+    color: var(--kenya-seed-green);
+}
+
+.badge-status.inactive {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Sidebar styling */
+.sidebar-branded {
+    background: linear-gradient(135deg, var(--kenya-seed-green) 0%, var(--kenya-seed-light-green) 100%);
+}
+
+.sidebar-branded .nav-link {
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+    margin-bottom: 5px;
+}
+
+.sidebar-branded .nav-link:hover,
+.sidebar-branded .nav-link.active {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-left-color: var(--kenya-seed-yellow);
+}
+
+/* Utility classes */
+.text-ks-green {
+    color: var(--kenya-seed-green) !important;
+}
+
+.text-ks-yellow {
+    color: var(--kenya-seed-yellow) !important;
+}
+
+.bg-ks-green {
+    background-color: var(--kenya-seed-green) !important;
+}
+
+.bg-ks-light-green {
+    background-color: var(--kenya-seed-light-green) !important;
+}
+
+.bg-ks-yellow {
+    background-color: var(--kenya-seed-yellow) !important;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .login-card {
+        margin: 20px;
+    }
+
+    .login-card-header h1 {
+        font-size: 24px;
+    }
+
+    .dashboard-watermark {
+        font-size: 200px;
+    }
+
+    body.login-page::before {
+        font-size: 100px;
+    }
+
+    body.login-page::after {
+        font-size: 110px;
+    }
+}

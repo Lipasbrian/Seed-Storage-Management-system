@@ -40,35 +40,55 @@ include 'includes/header.php';
         </div>
         <!-- Statistics Cards -->
         <div class="row mb-4">
-            <div class="col-md-3">
-                <div class="card text-white bg-success">
-                    <div class="card-body">
-                        <h5 class="card-title">Empty Bins</h5>
-                        <h2><?php echo $empty_bins; ?>/48</h2>
+            <div class="col-md-3 mb-3">
+                <div class="card dashboard-card">
+                    <div class="dashboard-card-header">
+                        <h5 class="dashboard-card-title">
+                            <i class="bi bi-box"></i> Empty Bins
+                        </h5>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="stat-value"><?php echo $empty_bins; ?></div>
+                        <div class="stat-label">out of 48 bins</div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="card text-white bg-warning">
-                    <div class="card-body">
-                        <h5 class="card-title">Partial Bins</h5>
-                        <h2><?php echo $partial_bins; ?>/48</h2>
+            <div class="col-md-3 mb-3">
+                <div class="card dashboard-card">
+                    <div class="dashboard-card-header">
+                        <h5 class="dashboard-card-title">
+                            <i class="bi bi-box-seam"></i> Partial Bins
+                        </h5>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="stat-value" style="color: var(--kenya-seed-yellow);"><?php echo $partial_bins; ?></div>
+                        <div class="stat-label">out of 48 bins</div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="card text-white bg-danger">
-                    <div class="card-body">
-                        <h5 class="card-title">Full Bins</h5>
-                        <h2><?php echo $full_bins; ?>/48</h2>
+            <div class="col-md-3 mb-3">
+                <div class="card dashboard-card">
+                    <div class="dashboard-card-header">
+                        <h5 class="dashboard-card-title">
+                            <i class="bi bi-box2-heart"></i> Full Bins
+                        </h5>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="stat-value" style="color: #dc3545;"><?php echo $full_bins; ?></div>
+                        <div class="stat-label">out of 48 bins</div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="card text-white bg-info">
-                    <div class="card-body">
-                        <h5 class="card-title">Total Stock</h5>
-                        <h2><?php echo number_format($total_stock); ?> kg</h2>
+            <div class="col-md-3 mb-3">
+                <div class="card dashboard-card">
+                    <div class="dashboard-card-header">
+                        <h5 class="dashboard-card-title">
+                            <i class="bi bi-graph-up"></i> Total Stock
+                        </h5>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="stat-value"><?php echo number_format($total_stock); ?></div>
+                        <div class="stat-label">kg stored</div>
                     </div>
                 </div>
             </div>
@@ -76,23 +96,37 @@ include 'includes/header.php';
         <!-- Today's Stats -->
         <div class="row mb-4">
             <div class="col-md-6">
-                <div class="card">
+                <div class="card dashboard-card">
+                    <div class="dashboard-card-header">
+                        <h5 class="dashboard-card-title">
+                            <i class="bi bi-truck"></i> Today's Deliveries
+                        </h5>
+                    </div>
                     <div class="card-body">
-                        <h5 class="card-title">Today's Deliveries</h5>
-                        <h2><?php echo $today_deliveries; ?></h2>
-                        <p class="text-muted">Total: <?php echo number_format($today_kg); ?> kg</p>
+                        <div class="row">
+                            <div class="col-6 text-center border-end">
+                                <div class="stat-value"><?php echo $today_deliveries; ?></div>
+                                <div class="stat-label">deliveries</div>
+                            </div>
+                            <div class="col-6 text-center">
+                                <div class="stat-value"><?php echo number_format($today_kg); ?></div>
+                                <div class="stat-label">kg received</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Recent Deliveries -->
-        <div class="card mb-4">
-            <div class="card-header">
-                <h5>Recent Deliveries</h5>
+        <div class="card dashboard-card">
+            <div class="dashboard-card-header">
+                <h5 class="dashboard-card-title">
+                    <i class="bi bi-clock-history"></i> Recent Deliveries
+                </h5>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-striped table-hover">
+                    <table class="table table-branded table-hover">
                         <thead>
                             <tr>
                                 <th>Date/Time</th>
