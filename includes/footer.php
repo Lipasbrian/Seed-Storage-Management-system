@@ -44,7 +44,8 @@
             const afterElement = document.querySelector('body::after');
             
             // Apply parallax transform to pseudo-elements via CSS variable
-            document.documentElement.style.setProperty('--scroll-y', scrollY * 0.5 + 'px');
+            // Scale movement by 5/8 (0.625) to increase clover motion slightly
+            document.documentElement.style.setProperty('--scroll-y', scrollY * 0.625 + 'px');
         });
     }
 
