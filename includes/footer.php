@@ -46,8 +46,68 @@
             // Apply parallax transform to pseudo-elements via CSS variable
             // Scale movement by 5/8 (0.625) to increase clover motion slightly
             document.documentElement.style.setProperty('--scroll-y', scrollY * 0.625 + 'px');
+            // Also update JS-created clover particles (if present)
+            if (window._cloverParticles && window._cloverParticles.length) {
+                // Use requestAnimationFrame-friendly update handled separately
+                window._cloverPendingScroll = scrollY;
+                if (!window._cloverTicking) {
+                    window._cloverTicking = true;
+                    window.requestAnimationFrame(function() {
+                        const sY = window._cloverPendingScroll || 0;
+                        window._cloverParticles.forEach(p => {
+                            const depth = parseFloat(p.dataset.depth) || 0.5;
+                            const rot = p.dataset.rot || 0;
+                            const translate = sY * depth * 0.625;
+                            p.style.transform = `translate(-50%, -50%) translateY(${translate}px) rotate(${rot}deg)`;
+                        });
+                        window._cloverTicking = false;
+                    });
+                }
+            }
         });
     }
+
+    // Create scattered clover particles for background on every page
+    (function initClovers() {
+        // run on all pages
+
+        const COUNT = 48; // number of clovers to scatter
+        const layer = document.createElement('div');
+        layer.className = 'clover-layer';
+        document.body.appendChild(layer);
+
+        window._cloverParticles = [];
+
+        for (let i = 0; i < COUNT; i++) {
+            const s = document.createElement('span');
+            s.className = 'clover-particle';
+            s.textContent = '🍀';
+
+            // random position across viewport
+            const left = Math.random() * 100;
+            const top = Math.random() * 100;
+
+            // size a bit larger: 50px - 160px
+            const size = Math.floor(50 + Math.random() * 110);
+
+            // depth affects parallax movement: 0.2 - 1.0
+            const depth = (0.2 + Math.random() * 0.8).toFixed(3);
+
+            // random rotation
+            const rot = Math.floor(Math.random() * 360) - 180;
+
+            s.style.left = left + '%';
+            s.style.top = top + '%';
+            s.style.fontSize = size + 'px';
+            s.style.opacity = (0.06 + Math.random() * 0.12).toFixed(2);
+
+            s.dataset.depth = depth;
+            s.dataset.rot = rot;
+
+            layer.appendChild(s);
+            window._cloverParticles.push(s);
+        }
+    })();
 
     // Sidebar toggle functionality
     const sidebarToggle = document.getElementById('sidebarToggle');
