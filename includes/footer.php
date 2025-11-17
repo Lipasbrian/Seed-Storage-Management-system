@@ -23,20 +23,32 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     // Sidebar toggle functionality
-    document.getElementById('sidebarToggle').addEventListener('click', function() {
-        const sidebar = document.getElementById('sidebar');
-        sidebar.classList.toggle('show');
-    });
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebar = document.getElementById('sidebar');
 
-    // Close sidebar when a link is clicked on mobile
-    document.querySelectorAll('.sidebar .nav-link').forEach(link => {
-        link.addEventListener('click', function() {
-            const sidebar = document.getElementById('sidebar');
-            if (window.innerWidth < 768) {
-                sidebar.classList.remove('show');
+    if (sidebarToggle && sidebar) {
+        sidebarToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            sidebar.classList.toggle('hide');
+        });
+
+        // Close sidebar when a link is clicked on mobile
+        document.querySelectorAll('.sidebar .nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth < 768) {
+                    sidebar.classList.add('hide');
+                }
+            });
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(e) {
+            if (window.innerWidth < 768 && !sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
+                sidebar.classList.add('hide');
             }
         });
-    });
+    }
 </script>
 </body>
 </html>

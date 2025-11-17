@@ -38,9 +38,6 @@
     <!-- Sidebar -->
     <nav class="sidebar bg-ks-light-green" id="sidebar">
         <div class="p-3">
-            <h5 class="text-white mb-3">
-                <i class="bi bi-list"></i> Menu
-            </h5>
             <ul class="nav flex-column gap-2">
                 <li class="nav-item">
                     <a class="nav-link text-white" href="dashboard.php">
