@@ -7,6 +7,21 @@
   --kenya-seed-gold: #daa520;
 }
 
+/* General body styling */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+html, body {
+  height: 100%;
+}
+
+main {
+  flex: 1;
+}
+
 /* Login Page Styling */
 body.login-page {
   background: linear-gradient(
@@ -493,6 +508,13 @@ body.dashboard-page {
 
 .bg-ks-yellow {
   background-color: var(--kenya-seed-yellow) !important;
+}
+
+/* Footer styling */
+.footer {
+  position: relative;
+  z-index: 1000;
+  margin-top: auto;
 }
 
 /* Responsive design */
