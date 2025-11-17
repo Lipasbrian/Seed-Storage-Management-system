@@ -22,7 +22,7 @@ body.dashboard-page::before {
   top: calc(10% + var(--scroll-y, 0px));
   left: 5%;
   font-size: 300px;
-  opacity: 0.12;
+  opacity: 0.25;
   z-index: 1;
   pointer-events: none;
   transform: skewY(-15deg) rotate(-20deg);
@@ -35,7 +35,7 @@ body.dashboard-page::after {
   bottom: calc(10% - var(--scroll-y, 0px));
   right: 8%;
   font-size: 320px;
-  opacity: 0.12;
+  opacity: 0.25;
   z-index: 1;
   pointer-events: none;
   transform: skewY(-15deg) rotate(15deg);
@@ -142,6 +142,22 @@ body.login-page::after {
   color: var(--kenya-seed-green);
   font-weight: 600;
   margin-bottom: 10px;
+}
+
+/* Card transparency for content harmony */
+.card {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.card-body {
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.table-responsive {
+  background-color: rgba(255, 255, 255, 0.93);
 }
 
 .form-control {
