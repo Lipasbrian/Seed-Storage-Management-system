@@ -541,6 +541,17 @@ body.dashboard-page {
   font-size: 11px;
 }
 
+/* Modal styling */
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+.modal.show {
+  z-index: 1050;
+}
+
 /* Bin hover tooltip */
 .bin-box {
   cursor: pointer;

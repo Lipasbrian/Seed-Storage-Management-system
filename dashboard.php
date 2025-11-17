@@ -181,7 +181,7 @@ include 'includes/header.php';
         </div>
 
         <!-- Edit Delivery Modal -->
-        <div class="modal fade" id="editDeliveryModal" tabindex="-1" data-bs-backdrop="static">
+        <div class="modal fade" id="editDeliveryModal" tabindex="-1" data-bs-backdrop="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header bg-ks-primary text-white">
