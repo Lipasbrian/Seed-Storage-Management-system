@@ -34,44 +34,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body class="login-page">
     <div class="login-container">
-        <div class="row justify-content-center">
-            <div class="col-md-5 col-lg-4">
-                <div class="card login-card">
-                    <div class="login-card-header">
-                        <h1>🌾 Kenya Seed</h1>
-                        <div class="company-name">Seed Storage Management System</div>
+        <div class="card login-card" style="max-width: 450px; margin: 0 auto;">
+            <div class="login-card-header">
+                <h1>🌾 Kenya Seed</h1>
+                <div class="company-name">Seed Storage Management System</div>
+            </div>
+            <div class="login-card-body">
+                <?php if ($error): ?>
+                    <div class="alert alert-danger">
+                        <i class="bi bi-exclamation-circle"></i> <?php echo $error; ?>
                     </div>
-                    <div class="login-card-body">
-                        <?php if ($error): ?>
-                            <div class="alert alert-danger">
-                                <i class="bi bi-exclamation-circle"></i> <?php echo $error; ?>
-                            </div>
-                        <?php endif; ?>
-                        <form method="post" autocomplete="off">
-                            <div class="mb-4">
-                                <label for="username" class="form-label">
-                                    <i class="bi bi-person-circle"></i> Username
-                                </label>
-                                <input type="text" name="username" id="username" class="form-control" placeholder="Enter your username" required autofocus>
-                            </div>
-                            <div class="mb-4">
-                                <label for="password" class="form-label">
-                                    <i class="bi bi-lock-fill"></i> Password
-                                </label>
-                                <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password" required>
-                            </div>
-                            <button type="submit" class="btn login-btn w-100">
-                                <i class="bi bi-box-arrow-in-right"></i> Login
-                            </button>
-                        </form>
-                        <hr class="my-4">
-                        <p class="text-center text-muted" style="font-size: 12px;">
-                            Demo Credentials:<br>
-                            <strong>Username:</strong> admin<br>
-                            <strong>Password:</strong> password
-                        </p>
+                <?php endif; ?>
+                <form method="post" autocomplete="off">
+                    <div class="mb-4">
+                        <label for="username" class="form-label">
+                            <i class="bi bi-person-circle"></i> Username
+                        </label>
+                        <input type="text" name="username" id="username" class="form-control" placeholder="Enter your username" required autofocus>
                     </div>
-                </div>
+                    <div class="mb-4">
+                        <label for="password" class="form-label">
+                            <i class="bi bi-lock-fill"></i> Password
+                        </label>
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="btn login-btn w-100">
+                        <i class="bi bi-box-arrow-in-right"></i> Login
+                    </button>
+                </form>
+                <hr class="my-4">
+                <p class="text-center text-muted" style="font-size: 12px;">
+                    Demo Credentials:<br>
+                    <strong>Username:</strong> admin<br>
+                    <strong>Password:</strong> password
+                </p>
             </div>
         </div>
     </div>
