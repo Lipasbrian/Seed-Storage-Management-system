@@ -191,7 +191,7 @@ body.login-page::after {
   background-color: #ffffff !important;
   position: relative;
   z-index: 9999 !important;
-  box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
 }
 
 .bin-status-card .card-body {
@@ -202,13 +202,13 @@ body.login-page::after {
 .bin-box {
   position: relative;
   z-index: 10000 !important;
-  background-color: #ffffff !important;
-  border: 1px solid rgba(0,0,0,0.06) !important;
+  background-color: var(--kenya-seed-light-green) !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
 }
 
 .bin-box .card-body {
-  background-color: #ffffff !important;
-  color: #222 !important;
+  background-color: transparent !important;
+  color: #ffffff !important;
 }
 
 .form-control {
