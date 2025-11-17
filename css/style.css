@@ -30,60 +30,15 @@ body.dashboard-page {
 }
 
 body.dashboard-page::before {
-  content: "🍀";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  font-size: 60px;
-  opacity: 0.04;
-  z-index: -1;
-  pointer-events: none;
-  background-image: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 80px,
-      rgba(45, 80, 22, 0.02) 80px,
-      rgba(45, 80, 22, 0.02) 160px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 80px,
-      rgba(45, 80, 22, 0.02) 80px,
-      rgba(45, 80, 22, 0.02) 160px
-    );
-  background-size: 160px 160px;
-  background-attachment: fixed;
-  line-height: 1;
-  word-spacing: 60px;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  overflow: hidden;
+  /* clover overlay removed - keep rule for safe fallback */
+  content: "";
+  display: none !important;
 }
 
 body.dashboard-page::after {
-  content: "🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀 🍀";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 150%;
-  height: 150%;
-  font-size: 50px;
-  opacity: 0.04;
-  z-index: -1;
-  pointer-events: none;
-  transform: translateY(var(--scroll-y, 0px)) skewY(-5deg);
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  line-height: 1.8;
-  letter-spacing: 8px;
-  color: rgba(45, 80, 22, 0.5);
-  text-shadow: 2px 2px 4px rgba(45, 80, 22, 0.1),
-    -2px -2px 4px rgba(45, 80, 22, 0.05);
-  animation: cloverSway 15s ease-in-out infinite;
+  /* clover overlay removed - keep rule for safe fallback */
+  content: "";
+  display: none !important;
 }
 
 @keyframes cloverDrift {
@@ -124,7 +79,12 @@ main {
   color: #222;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: #1a1a1a;
   font-weight: 700;
 }
