@@ -1,10 +1,30 @@
 <?php
 // config.php - PostgreSQL Database Configuration
-define('DB_HOST', 'localhost');
-define('DB_PORT', '5432');
-define('DB_USER', 'postgres');
-define('DB_PASS', '*O926202o'); // Change to your PostgreSQL password
-define('DB_NAME', 'seed_storage_system');
+// Load environment variables from .env file
+function loadEnv($filePath) {
+    if (!file_exists($filePath)) {
+        die("Error: .env file not found at " . $filePath);
+    }
+    $lines = file($filePath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        if (strpos($line, '=') !== false && strpos($line, '#') !== 0) {
+            list($key, $value) = explode('=', $line, 2);
+            $key = trim($key);
+            $value = trim($value);
+            if (!empty($key)) {
+                $_ENV[$key] = $value;
+            }
+        }
+    }
+}
+
+loadEnv(__DIR__ . '/.env');
+
+define('DB_HOST', $_ENV['DB_HOST'] ?? 'localhost');
+define('DB_PORT', $_ENV['DB_PORT'] ?? '5432');
+define('DB_USER', $_ENV['DB_USER'] ?? 'postgres');
+define('DB_PASS', $_ENV['DB_PASS'] ?? '');
+define('DB_NAME', $_ENV['DB_NAME'] ?? 'seed_storage_system');
 
 // Timezone
 date_default_timezone_set('Africa/Nairobi');
