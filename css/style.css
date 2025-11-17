@@ -361,7 +361,7 @@ body.dashboard-page {
   width: 200px;
   height: calc(100vh - 56px);
   background-color: var(--kenya-seed-light-green);
-  z-index: 999;
+  z-index: 99;
   overflow-y: auto;
   transition: transform 0.3s ease;
   padding-top: 0;

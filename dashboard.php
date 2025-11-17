@@ -23,6 +23,11 @@ $recent_deliveries = $stmt->fetchAll();
 // Bin status grid
 $stmt = $db->query("SELECT * FROM bin_utilization ORDER BY bin_number");
 $bins = $stmt->fetchAll();
+// Invoice statistics
+$stmt = $db->query("SELECT COUNT(*) as total FROM invoices");
+$total_invoices = $stmt->fetch()['total'] ?? 0;
+$stmt = $db->query("SELECT SUM(amount) as total FROM invoices");
+$total_invoice_amount = $stmt->fetch()['total'] ?? 0;
 include 'includes/header.php';
 ?>
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
@@ -80,18 +85,28 @@ include 'includes/header.php';
                 <div class="card dashboard-card">
                     <div class="dashboard-card-header">
                         <h5 class="dashboard-card-title">
-                            <i class="bi bi-graph-up"></i> Total Stock
+                            <i class="bi bi-receipt"></i> Invoices
                         </h5>
                     </div>
                     <div class="card-body text-center">
-                        <div class="stat-value"><?php echo number_format($total_stock); ?></div>
-                        <div class="stat-label">kg stored</div>
+                        <div class="stat-value"><?php echo $total_invoices; ?></div>
+                        <div class="stat-label">total invoices</div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- Today's Stats -->
-        <div class="row mb-4">
+            <div class="col-md-3 mb-3">
+                <div class="card dashboard-card">
+                    <div class="dashboard-card-header">
+                        <h5 class="dashboard-card-title">
+                            <i class="bi bi-currency-dollar"></i> Invoice Total
+                        </h5>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="stat-value"><?php echo number_format($total_invoice_amount, 2); ?></div>
+                        <div class="stat-label">amount total</div>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-6">
                 <div class="card dashboard-card">
                     <div class="dashboard-card-header">

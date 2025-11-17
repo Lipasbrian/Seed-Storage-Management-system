@@ -36,6 +36,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="invoices.php">
+                        <i class="bi bi-receipt"></i> Invoices
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="varieties.php">
                         <i class="bi bi-seedling"></i> Seed Varieties
                     </a>
