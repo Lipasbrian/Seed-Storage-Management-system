@@ -21,11 +21,8 @@ foreach ($deliveries as $delivery) {
 }
 include 'includes/header.php';
 ?>
-<div class="row">
-    <?php include 'includes/sidebar.php'; ?>
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Daily Delivery Report</h1>
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <h1 class="h2">Daily Operations Report</h1>
             <form class="row g-2" method="get">
                 <div class="col-auto">
                     <input type="date" name="date" class="form-control" value="<?php echo htmlspecialchars($date); ?>">
@@ -83,6 +80,4 @@ include 'includes/header.php';
                 </div>
             </div>
         </div>
-    </main>
-</div>
 <?php include 'includes/footer.php'; ?>

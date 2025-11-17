@@ -33,14 +33,11 @@ $stmt = $db->query('SELECT * FROM users ORDER BY created_at DESC');
 $users = $stmt->fetchAll();
 include 'includes/header.php';
 ?>
-<div class="row">
-    <?php include 'includes/sidebar.php'; ?>
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">User Management</h1>
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <h1 class="h2">Users Management</h1>
         </div>
         <div class="card mb-4">
-            <div class="card-header bg-primary text-white">
+            <div class="card-header bg-ks-primary text-white">
                 <h5 class="mb-0">Add User</h5>
             </div>
             <div class="card-body">
@@ -117,6 +114,4 @@ include 'includes/header.php';
                 </div>
             </div>
         </div>
-    </main>
-</div>
 <?php include 'includes/footer.php'; ?>

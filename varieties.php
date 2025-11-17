@@ -4,11 +4,8 @@ require_once 'config.php';
 requireLogin();
 include 'includes/header.php';
 ?>
-<div class="row">
-    <?php include 'includes/sidebar.php'; ?>
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Maize Varieties</h1>
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <h1 class="h2">Seed Varieties</h1>
         </div>
         <div class="alert alert-info mb-4">Only maize varieties are allowed in this system.</div>
         <div class="card">
@@ -47,6 +44,4 @@ include 'includes/header.php';
                 </div>
             </div>
         </div>
-    </main>
-</div>
 <?php include 'includes/footer.php'; ?>

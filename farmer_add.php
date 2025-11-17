@@ -27,12 +27,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 include 'includes/header.php';
 ?>
-<div class="row justify-content-center mt-4">
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-header bg-primary text-white">
-                <h4 class="mb-0">Add Farmer</h4>
-            </div>
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-ks-primary text-white">
+                        <h4 class="mb-0">Add Farmer</h4>
+                    </div>
             <div class="card-body">
                 <?php if ($error): ?>
                     <div class="alert alert-danger"> <?php echo $error; ?> </div>
@@ -62,8 +62,8 @@ include 'includes/header.php';
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Add Farmer</button>
                 </form>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+        </div>
 <?php include 'includes/footer.php'; ?>
