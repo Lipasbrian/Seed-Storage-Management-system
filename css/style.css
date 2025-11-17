@@ -121,6 +121,12 @@ body {
 
 main {
   flex: 1;
+  color: #222;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #1a1a1a;
+  font-weight: 700;
 }
 
 /* Login Page Styling */
@@ -362,6 +368,7 @@ body.dashboard-page {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
   border-left: 5px solid var(--kenya-seed-green);
+  background-color: rgba(255, 255, 255, 0.98) !important;
 }
 
 .dashboard-card:hover {
@@ -384,6 +391,8 @@ body.dashboard-page {
 .dashboard-card-title {
   margin: 0;
   font-size: 18px;
+  color: white;
+  font-weight: 700;
 }
 
 .stat-value {
@@ -394,7 +403,7 @@ body.dashboard-page {
 }
 
 .stat-label {
-  color: #666;
+  color: #333;
   font-size: 14px;
   font-weight: 500;
 }
@@ -444,10 +453,17 @@ body.dashboard-page {
 .table-branded thead {
   background-color: var(--kenya-seed-green);
   color: white;
+  font-weight: 700;
 }
 
 .table-branded tbody tr {
   border-bottom: 1px solid #e0e0e0;
+  color: #222;
+}
+
+.table-branded tbody tr td {
+  color: #222;
+  font-weight: 500;
 }
 
 .table-branded tbody tr:hover {
