@@ -738,3 +738,14 @@ a[href*="edit"]:not(.nav-link) {
     font-size: 110px;
   }
 }
+
+/* Row highlight for updated bins */
+.row-highlight {
+  animation: ks-flash 1s ease;
+}
+
+@keyframes ks-flash {
+  0% { background-color: rgba(255, 246, 143, 0.9); }
+  40% { background-color: rgba(255, 246, 143, 0.5); }
+  100% { background-color: transparent; }
+}

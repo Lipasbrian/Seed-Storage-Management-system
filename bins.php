@@ -16,6 +16,12 @@ include 'includes/header.php';
                 <h5>All Bins (1-48)</h5>
             </div>
             <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div>
+                        <button id="bins-refresh" class="btn btn-sm btn-ks-primary">Refresh</button>
+                    </div>
+                    <div class="text-muted small">Last update: <span id="bins-last-updated">—</span></div>
+                </div>
                 <div class="table-responsive">
                     <table class="table table-striped table-hover">
                         <thead>
@@ -77,30 +83,60 @@ include 'includes/header.php';
         </div>
         <script>
         (function(){
-            // Poll every 8 seconds for updated bin statuses
-            const POLL_MS = 8000;
+            // Poll every 3 seconds for updated bin statuses (shortened for near-realtime)
+            const POLL_MS = 3000;
+            const HIGHLIGHT_MS = 1200;
+            const prev = new Map();
+
             async function refreshBins(){
+                const refreshButton = document.getElementById('bins-refresh');
+                if (refreshButton) refreshButton.disabled = true;
                 try{
                     const res = await fetch('ajax_get_bins_statuses.php');
                     if(!res.ok) return;
                     const bins = await res.json();
+                    const now = new Date();
+                    document.getElementById('bins-last-updated').textContent = now.toLocaleTimeString();
+
                     bins.forEach(b => {
                         const row = document.querySelector(`tr[data-bin-number="${b.bin_number}"]`);
                         if(!row) return;
+                        // Read previous stock for change detection
+                        const prevVal = prev.get(b.bin_number);
+                        const curKg = Number(b.current_stock_kg);
+
                         // Update current stock cell (3rd column, index 2)
                         const curCell = row.cells[2];
-                        curCell.textContent = Number(b.current_stock_kg).toLocaleString();
+                        curCell.textContent = curKg.toLocaleString();
+
                         // Update status cell (4th column, index 3)
                         const statusCell = row.cells[3];
                         const statusClass = b.status === 'empty' ? 'bg-success' : (b.status === 'full' ? 'bg-danger' : 'bg-warning');
                         const statusHtml = `<span class="badge ${statusClass}">${b.status.charAt(0).toUpperCase() + b.status.slice(1)}</span>`;
                         const progress = `<div class="progress mt-2" style="height:8px; max-width:140px;"><div class="progress-bar" role="progressbar" style="width: ${Math.round(b.fill_percent)}%;" aria-valuenow="${Math.round(b.fill_percent)}" aria-valuemin="0" aria-valuemax="100"></div></div>`;
                         statusCell.innerHTML = statusHtml + progress;
+
+                        // Highlight row if value changed (not for initial load)
+                        if (typeof prevVal !== 'undefined' && prevVal !== curKg) {
+                            row.classList.add('row-highlight');
+                            setTimeout(() => row.classList.remove('row-highlight'), HIGHLIGHT_MS);
+                        }
+                        prev.set(b.bin_number, curKg);
                     });
                 }catch(e){
                     console.error('Failed to refresh bins', e);
+                } finally {
+                    if (refreshButton) refreshButton.disabled = false;
                 }
             }
+
+            // Hook refresh button
+            document.addEventListener('click', function(e){
+                if (e.target && e.target.id === 'bins-refresh') {
+                    refreshBins();
+                }
+            });
+
             // Initial load + interval
             refreshBins();
             setInterval(refreshBins, POLL_MS);
