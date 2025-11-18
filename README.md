@@ -398,6 +398,85 @@ If documentation is unclear:
 - [ ] Read PROJECT_CHECK.md
 - [ ] Skim QUICK_REFERENCE.md
 
+---
+
+## Reconciliation & Real-time updates
+
+This project includes tools to keep `bins.current_stock_kg` and `bins.status` in sync with recorded deliveries and to provide near-real-time UI updates.
+
+1. Reconciliation (one-time / CLI)
+
+- Files added to the repo:
+
+  - `reconcile_bins.sql` — SQL script that:
+    - sets missing `capacity_kg` to 18,000 (300 bags × 60 kg)
+    - initializes NULL `current_stock_kg` to 0
+    - recomputes `current_stock_kg` by summing `deliveries.kg_delivered`
+    - recomputes `bins.status` = ('empty'|'partial'|'full')
+  - `bin_reconcile.php` — PHP CLI runner that performs the same steps and supports `--dry-run`.
+
+- How to run safely:
+
+  - Backup your DB first (example using `pg_dump`):
+
+    - Note: on Windows do not use angle-bracket placeholders like `<host>`; substitute real values.
+
+    ```powershell
+    pg_dump -h localhost -U postgres -F c -b -v -f "seedstorage_backup_$(Get-Date -Format yyyyMMddHHmmss).dump" seedstorage
+    ```
+
+    If `pg_dump` is not available, use pgAdmin (Export/Backup) or install PostgreSQL client tools.
+
+  - Dry-run (recommended):
+
+    ```powershell
+    php bin_reconcile.php --dry-run
+    ```
+
+  - Run for real:
+
+    ```powershell
+    php bin_reconcile.php
+    ```
+
+  - Or run the SQL directly (replace placeholders with real values):
+    ```powershell
+    psql -h localhost -U postgres -d seedstorage -f reconcile_bins.sql
+    ```
+
+2. Scheduling reconciliation
+
+- Recommended: run reconciliation during off-peak hours (cron / Task Scheduler). Example schedules:
+  - Cron (every 30 minutes):
+    ```cron
+    */30 * * * * /usr/bin/php /path/to/my-ksc-app/bin_reconcile.php >> /var/log/bin_reconcile.log 2>&1
+    ```
+  - Windows Task Scheduler: create a task that runs `php C:\path\to\my-ksc-app\bin_reconcile.php` on a schedule.
+
+3. Realtime UI options
+
+- Current implementation: `bins.php` polls `ajax_get_bins_statuses.php` (every 3s) and updates rows in-place. Rows flash briefly when values change.
+- Alternatives if you need lower-latency or many clients:
+  - Server-Sent Events (SSE): simpler than WebSockets for one-way updates. Add `sse_bins.php` and client `EventSource`.
+  - WebSockets: full duplex, best for heavy traffic/bi-directional updates (requires a separate server process).
+
+4. Verification and troubleshooting
+
+- Verify with pgAdmin: run the Query Tool and inspect `bins` table (sort by `last_updated`). The activity dashboard will show commits and SELECTs when reconciliation and polling run.
+- Quick CLI check (no `psql` required): I can add a `check_bins.php` helper that prints recent bin states; run with:
+  ```powershell
+  php check_bins.php
+  ```
+- If `psql` / `pg_dump` reports "not recognized", install PostgreSQL client tools or use pgAdmin.
+
+5. Safety notes
+
+- Always backup before running reconciliation or altering schema.
+- The reconciliation script assumes `deliveries.kg_delivered` is authoritative for bin stock; confirm this matches your operational model before overwriting values.
+- Consider keeping a periodic reconciliation (e.g., every 30 minutes) to avoid drift caused by manual DB edits or failed updates.
+
+If you'd like, I can add `check_bins.php` now, prepare a `sse_bins.php` example, or create a short README section explaining how to install `psql`/`pg_dump` on Windows. Tell me which one to add next and I'll commit it.
+
 **Short-term (This Week):**
 
 - [ ] Complete IMPROVEMENTS.md - Priority 1

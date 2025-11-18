@@ -1,0 +1,8 @@
+﻿git : To https://github.com/Lipasbrian/Seed-Storage-Management-system.git
+At line:1 char:80
++ ... bin boxes green (use light-green)'; git push origin main 2>&1 | Out-F ...
++                                         ~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (To https://gith...ment-system.git:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+   8a6357e..b79de20  main -> main

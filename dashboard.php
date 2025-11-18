@@ -190,7 +190,7 @@ include 'includes/header.php';
         </script>
 
         <!-- Bin Status Grid -->
-        <div class="card">
+        <div class="card bin-status-card">
             <div class="card-header">
                 <h5>Bin Status (1-48)</h5>
             </div>

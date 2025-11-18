@@ -745,7 +745,13 @@ a[href*="edit"]:not(.nav-link) {
 }
 
 @keyframes ks-flash {
-  0% { background-color: rgba(255, 246, 143, 0.9); }
-  40% { background-color: rgba(255, 246, 143, 0.5); }
-  100% { background-color: transparent; }
+  0% {
+    background-color: rgba(255, 246, 143, 0.9);
+  }
+  40% {
+    background-color: rgba(255, 246, 143, 0.5);
+  }
+  100% {
+    background-color: transparent;
+  }
 }
