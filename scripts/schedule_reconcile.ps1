@@ -16,7 +16,7 @@ USAGE
 
 # Remove the task
   schtasks /Delete /TN "SeedStorage_Reconcile" /F
-#
+#+>
 param(
     [string]$PhpPath = "C:\\php\\php.exe",
     [string]$AppPath = (Get-Location).Path,
