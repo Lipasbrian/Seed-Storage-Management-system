@@ -19,7 +19,7 @@ include 'includes/header.php';
                 <div class="table-responsive">
                     <table class="table table-striped table-hover">
                         <thead>
-                            <tr>
+                            <tr data-bin-number="<?php echo $bin['bin_number']; ?>">
                                 <th>Bin Number</th>
                                 <th>Capacity</th>
                                 <th>Current Stock (kg)</th>
@@ -75,4 +75,35 @@ include 'includes/header.php';
                 </div>
             </div>
         </div>
+        <script>
+        (function(){
+            // Poll every 8 seconds for updated bin statuses
+            const POLL_MS = 8000;
+            async function refreshBins(){
+                try{
+                    const res = await fetch('ajax_get_bins_statuses.php');
+                    if(!res.ok) return;
+                    const bins = await res.json();
+                    bins.forEach(b => {
+                        const row = document.querySelector(`tr[data-bin-number="${b.bin_number}"]`);
+                        if(!row) return;
+                        // Update current stock cell (3rd column, index 2)
+                        const curCell = row.cells[2];
+                        curCell.textContent = Number(b.current_stock_kg).toLocaleString();
+                        // Update status cell (4th column, index 3)
+                        const statusCell = row.cells[3];
+                        const statusClass = b.status === 'empty' ? 'bg-success' : (b.status === 'full' ? 'bg-danger' : 'bg-warning');
+                        const statusHtml = `<span class="badge ${statusClass}">${b.status.charAt(0).toUpperCase() + b.status.slice(1)}</span>`;
+                        const progress = `<div class="progress mt-2" style="height:8px; max-width:140px;"><div class="progress-bar" role="progressbar" style="width: ${Math.round(b.fill_percent)}%;" aria-valuenow="${Math.round(b.fill_percent)}" aria-valuemin="0" aria-valuemax="100"></div></div>`;
+                        statusCell.innerHTML = statusHtml + progress;
+                    });
+                }catch(e){
+                    console.error('Failed to refresh bins', e);
+                }
+            }
+            // Initial load + interval
+            refreshBins();
+            setInterval(refreshBins, POLL_MS);
+        })();
+        </script>
 <?php include 'includes/footer.php'; ?>

@@ -31,8 +31,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Insert delivery
         $stmt = $db->prepare('INSERT INTO deliveries (permit_id, farmer_id, variety_id, bin_id, bags_delivered, kg_delivered, moisture_content, delivery_datetime, received_by, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
         $stmt->execute([$permit_id, $farmer_id, $variety_id, $bin_id, $bags_delivered, $kg_delivered, $moisture_content, $delivery_datetime, $received_by, $notes]);
-        // Update bin stock and status
-        $db->prepare('UPDATE bins SET current_stock_kg = current_stock_kg + ?, current_moisture_content = ? WHERE id = ?')->execute([$kg_delivered, $moisture_content, $bin_id]);
+        // Update bin stock
+        $db->prepare('UPDATE bins SET current_stock_kg = current_stock_kg + ?, current_moisture_content = ? WHERE id = ?')
+            ->execute([$kg_delivered, $moisture_content, $bin_id]);
+        // Recompute and set bin status based on new current stock
+        $binInfo = $db->prepare('SELECT id, capacity_kg, current_stock_kg FROM bins WHERE id = ?');
+        $binInfo->execute([$bin_id]);
+        $b = $binInfo->fetch(PDO::FETCH_ASSOC);
+        if ($b) {
+            $newStock = floatval($b['current_stock_kg']);
+            $cap = floatval($b['capacity_kg']);
+            $newStatus = 'partial';
+            if ($newStock <= 0) $newStatus = 'empty';
+            elseif ($cap > 0 && $newStock >= $cap) $newStatus = 'full';
+            $db->prepare('UPDATE bins SET status = ? WHERE id = ?')->execute([$newStatus, $b['id']]);
+        }
         // Audit log
         logAudit($received_by, 'add_delivery', 'deliveries', $db->lastInsertId('deliveries_id_seq'), "Added delivery");
         $success = 'Delivery recorded successfully!';
